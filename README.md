@@ -8,8 +8,8 @@ Python Pandas is use to store and manipulation of data as per requirement.
 GetDataFromUrl ==> this Function is used to fetch JSON data from parse URL then convert it into DataFrame.
 GetTaskCompleteDetails ==> this function is use to calculate total task as per user and compute total percentage of task completion as per completed status.
 
-==  Step to Run ==
-Set UserUrl for users data URL.
+==  Step to Run == \n
+\n Set UserUrl for users data URL.
 Set TodosUrl for todos data URL.
 set LatLower and LatUpper for LAT values.
 set LngLower and LngUpper for LNG Values.
