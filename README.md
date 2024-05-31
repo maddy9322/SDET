@@ -9,6 +9,7 @@ GetDataFromUrl ==> this Function is used to fetch JSON data from parse URL then 
 GetTaskCompleteDetails ==> this function is use to calculate total task as per user and compute total percentage of task completion as per completed status.
 
 ==  Step to Run == 
+
 Set UserUrl for users data URL.
 Set TodosUrl for todos data URL.
 set LatLower and LatUpper for LAT values.
