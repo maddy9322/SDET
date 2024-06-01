@@ -1,5 +1,5 @@
 
-import sys
+
 import requests
 import pandas as pd
 
@@ -37,13 +37,24 @@ def GetTaskCompleteDetails(CalcDF):
 
 if __name__ == '__main__':
     
-    url = 'https://jsonplaceholder.typicode.com/users'
+    
+    
+    
+    UserUrl = 'https://jsonplaceholder.typicode.com/users'
+    TodosUrl = 'https://jsonplaceholder.typicode.com/todos'
+    
+    LatLower = -40
+    LatUpper = 5
 
-    UserDatilsDF = GetDataFromUrl(url)
+    LngLower = 5    
+    LngUpper = 100
+
+    TaskComplete = 50
+    
+    UserDatilsDF = GetDataFromUrl(UserUrl)
     #print(UserDatilsDF)
     
-    url = 'https://jsonplaceholder.typicode.com/todos'
-    ToDoDF = GetDataFromUrl(url)
+    ToDoDF = GetDataFromUrl(TodosUrl)
     #print(ToDoDF)
     
     #ToDoDF.info()
@@ -53,7 +64,7 @@ if __name__ == '__main__':
     #UserDatilsDF.info()
     
     ## filter as per lat and lng data
-    CityDataframe = UserDatilsDF[UserDatilsDF["address.geo.lat"].between(-40,5) & UserDatilsDF["address.geo.lng"].between(5,100)]
+    CityDataframe = UserDatilsDF[UserDatilsDF["address.geo.lat"].between(LatLower,LatUpper) & UserDatilsDF["address.geo.lng"].between(LngLower,LngUpper)]
     #print(CityDataframe)
     
     ## Calculate task complete as per todo list
@@ -63,9 +74,5 @@ if __name__ == '__main__':
     MappedDataFrame = pd.merge(CityDataframe, CalculatedToDo, how='inner', left_on='id', right_on='userId')
     #print(FinalData)
     
-    FinalDataFrame = MappedDataFrame[MappedDataFrame['CompleteTaksPerc']> 50]
-    print(FinalDataFrame.drop(CalculatedToDo.columns,axis = 1))
-    
-    
-    
-
+    FinalDataFrame = MappedDataFrame[MappedDataFrame['CompleteTaksPerc']> TaskComplete]
+    print(FinalDataFrame.drop(CalculatedToDo.columns, axis = 1))
